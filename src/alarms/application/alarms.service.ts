@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAlarmDto } from '../presenters/http/dto/create-alarm.dto';
+import { CreateAlarmCommand } from './comamnds/create-alarm.command';
 
 @Injectable()
 export class AlarmsService {
-  create(createAlarmDto: CreateAlarmDto) {
+  create(_createAlarmDto: CreateAlarmCommand) {
     return 'This action adds a new alarm';
   }
 
