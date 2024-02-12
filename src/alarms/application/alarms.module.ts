@@ -3,7 +3,7 @@ import { AlarmCreatedEventHandler } from '~alarms/domain/event-handlers/alarm-cr
 import { AlarmFactory } from '../domain/factories/alarm.factory';
 import { AlarmsController } from '../presenters/http/alarms.controller';
 import { AlarmsService } from './alarms.service';
-import { CreateAlarmCommandHandler } from './comamnds/create-alarm.command-handler';
+import { CreateAlarmCommandHandler } from './commands/create-alarm.command-handler';
 import { GetAlarmsQueryHandler } from './queries/get-alarms.query-handler';
 
 @Module({

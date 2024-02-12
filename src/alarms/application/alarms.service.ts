@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { Alarm } from '~alarms/domain/alarm';
-import { CreateAlarmCommand } from './comamnds/create-alarm.command';
+import { CreateAlarmCommand } from './commands/create-alarm.command';
 import { GetAlarmsQuery } from './queries/get-alarms.query';
 
 @Injectable()

@@ -2,7 +2,7 @@ import { Logger } from '@nestjs/common';
 import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { Alarm } from '~alarms/domain/alarm';
 import { AlarmFactory } from '~alarms/domain/factories/alarm.factory';
-import { AlarmRepository } from '../ports/alarm.repository';
+import { CreateAlarmRepository } from '../ports/create-alarm.repository';
 import { CreateAlarmCommand } from './create-alarm.command';
 import { AlarmCreatedEvent } from '~alarms/domain/events/alarm-created.event';
 
@@ -13,7 +13,7 @@ export class CreateAlarmCommandHandler
   private readonly logger = new Logger(CreateAlarmCommandHandler.name);
 
   constructor(
-    private readonly alamRepository: AlarmRepository,
+    private readonly alamRepository: CreateAlarmRepository,
     private readonly alarmFactory: AlarmFactory,
     private readonly eventBus: EventBus,
   ) {}
@@ -23,7 +23,12 @@ export class CreateAlarmCommandHandler
       `Processing "CreateAlarmCommand": ${JSON.stringify(command)}`,
     );
 
-    const alarm = this.alarmFactory.create(command.name, command.severity);
+    const alarm = this.alarmFactory.create(
+      command.name,
+      command.severity,
+      command.triggeredAt,
+      command.items,
+    );
     const newAlarm = await this.alamRepository.save(alarm);
 
     // This is not yet the best way to dispatch events.
