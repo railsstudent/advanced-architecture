@@ -5,6 +5,7 @@ import { AlarmsModule } from './alarms/application/alarms.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoreModule } from './core/core.module';
+import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
   imports: [CoreModule],
@@ -16,6 +17,7 @@ export class AppModule {
     return {
       module: AppModule,
       imports: [
+        CqrsModule.forRoot(),
         CoreModule.forRoot(options),
         AlarmsModule.withInfrastructure(
           AlarmsInfrastructureModule.use(options.driver),
