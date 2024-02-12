@@ -1,4 +1,5 @@
 import { DynamicModule, Module, Type } from '@nestjs/common';
+import { AlarmCreatedEventHandler } from '~alarms/domain/event-handlers/alarm-created.event-handler';
 import { AlarmFactory } from '../domain/factories/alarm.factory';
 import { AlarmsController } from '../presenters/http/alarms.controller';
 import { AlarmsService } from './alarms.service';
@@ -12,6 +13,7 @@ import { GetAlarmsQueryHandler } from './queries/get-alarms.query-handler';
     AlarmFactory,
     CreateAlarmCommandHandler,
     GetAlarmsQueryHandler,
+    AlarmCreatedEventHandler,
   ],
 })
 export class AlarmsModule {
