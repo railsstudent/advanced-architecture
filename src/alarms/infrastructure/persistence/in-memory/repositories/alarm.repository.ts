@@ -19,8 +19,6 @@ export class InMemoryAlarmRepository
 
   // convert to domain model
   async findAll(): Promise<AlarmReadModel[]> {
-    console.log('connie', alarm.items);
-
     return Array.from(this.materializedAlarmViews.values());
   }
 
