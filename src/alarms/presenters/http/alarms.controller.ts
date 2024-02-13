@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
 import { AlarmsService } from '../../application/alarms.service';
 import { CreateAlarmDto } from './dto/create-alarm.dto';
 import { CreateAlarmCommand } from '~alarms/application/commands/create-alarm.command';
@@ -22,5 +22,10 @@ export class AlarmsController {
   @Get()
   findAll() {
     return this.alarmsService.findAll();
+  }
+
+  @Patch(':id/acknowledge') // 👈
+  acknowledge(@Param('id') id: string) {
+    return this.alarmsService.acknowledge(id);
   }
 }

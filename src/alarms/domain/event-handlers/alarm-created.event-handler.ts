@@ -21,7 +21,7 @@ export class AlarmCreatedEventHandler
     await this.upsertMaterializedAlarmRepository.upsert({
       id: alarm.id,
       name: alarm.name,
-      severity: alarm.severity.value,
+      severity: alarm.severity,
       triggeredAt: new Date(alarm.triggeredAt),
       isAcknowledged: alarm.isAcknowledged,
       items: alarm.items,
