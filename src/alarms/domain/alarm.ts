@@ -24,6 +24,7 @@ export class Alarm extends VersionedAggregateRoot {
     this.items.push(item);
   }
 
+  // call by aggregate rehydration
   [`on${AlarmCreatedEvent.name}`](
     event: SerializedEventPayload<AlarmCreatedEvent>,
   ) {
@@ -38,6 +39,7 @@ export class Alarm extends VersionedAggregateRoot {
     );
   }
 
+  // call by aggregate rehydration
   [`on${AlarmAcknowledgedEvent.name}`]() {
     console.log(`on${AlarmAcknowledgedEvent.name} called`);
 
