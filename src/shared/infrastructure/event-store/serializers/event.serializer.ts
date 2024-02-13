@@ -13,6 +13,8 @@ export class EventSerializer {
       throw new Error('Incompatible event type');
     }
 
+    console.log('EventSerializer.serialize called');
+
     const aggregateId = dispatcher.id;
     return {
       streamId: aggregateId,

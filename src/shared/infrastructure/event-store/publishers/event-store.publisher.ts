@@ -31,6 +31,7 @@ export class EventStorePublisher
     events: T[],
     dispatcher: VersionedAggregateRoot,
   ) {
+    console.log('EventStorePublisher.publishAll called', events);
     const serializableEvents = events
       .map((event) => this.eventSerializer.serialize(event, dispatcher))
       .map((serializableEvent, index) => ({
