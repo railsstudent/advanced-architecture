@@ -32,8 +32,6 @@ export class InMemoryAlarmRepository
   upsert(
     alarm: Pick<AlarmReadModel, 'id'> & Partial<AlarmReadModel>,
   ): Promise<void> {
-    console.log('connie', alarm.items);
-
     if (this.materializedAlarmViews.has(alarm.id)) {
       this.materializedAlarmViews.set(alarm.id, {
         ...this.materializedAlarmViews.get(alarm.id),

@@ -1,16 +1,26 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { FindAlarmsRepository } from '~alarms/application/ports/find-alarms.repository';
+import { UpsertMaterializedAlarmRepository } from '~alarms/application/ports/upsert-materialized-alarm.repository';
 import { CreateAlarmRepository } from '../../../application/ports/create-alarm.repository';
 import { AlarmItemEntity } from './entities/alarm-item.entity';
 import { AlarmEntity } from './entities/alarm.entity';
 import { OrmCreateAlarmRepository } from './repositories/create-alarm.repository';
-import { FindAlarmsRepository } from '~alarms/application/ports/find-alarms.repository';
 import { OrmFindAlarmsRepository } from './repositories/find-alarms.repository';
-import { UpsertMaterializedAlarmRepository } from '~alarms/application/ports/upsert-materialized-alarm.repository';
 import { OrmUpsertMaterializedAlarmRepository } from './repositories/upsert-materialized-alarm.repository';
+import {
+  MaterializedAlarmView,
+  MaterializedAlarmViewSchema,
+} from './schemas/materialized-alarm-view.schema';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AlarmEntity, AlarmItemEntity])],
+  imports: [
+    TypeOrmModule.forFeature([AlarmEntity, AlarmItemEntity]),
+    MongooseModule.forFeature([
+      { name: MaterializedAlarmView.name, schema: MaterializedAlarmViewSchema },
+    ]),
+  ],
   providers: [
     {
       provide: CreateAlarmRepository,
