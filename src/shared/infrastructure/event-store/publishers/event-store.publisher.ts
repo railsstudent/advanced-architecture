@@ -22,6 +22,7 @@ export class EventStorePublisher
     event: T,
     dispatcher: VersionedAggregateRoot,
   ) {
+    console.log('EventStorePublisher.publish called', event);
     const serializableEvent = this.eventSerializer.serialize(event, dispatcher);
     return this.eventStore.persist(serializableEvent);
   }
