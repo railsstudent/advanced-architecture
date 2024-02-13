@@ -29,7 +29,7 @@ export class CreateAlarmCommandHandler
 
     // aware of the eventbus. associate it with Alarm model
     // The EventPublisher#mergeObjectContext method merges the event publisher
-    // into the provided object, which means that the object will now be able to publish 
+    // into the provided object, which means that the object will now be able to publish
     // events to the events stream.
     this.eventPublisher.mergeObjectContext(alarm);
     alarm.commit();
